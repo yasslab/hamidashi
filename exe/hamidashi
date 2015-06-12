@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'fileutils'
+require 'hamidashi'
 require 'pdf/reader'
 require 'tmpdir'
 
@@ -11,18 +12,13 @@ end
 pdf_path   = File.expand_path(ARGV[0])
 output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
-# TODO コマンドライン引数から取る
-width             = 640
-crop_width        = 28
-crop              = "#{crop_width}x+#{width - crop_width}+0"
-expected_colornum = 1
-
 Dir.mktmpdir('hamidashi') do |temp_dir|
+  はみだし = Hamidashi.new
+
   (0...PDF::Reader.new(pdf_path).page_count).each do |page|
-    colornum=`convert -density 92 -geometry #{width} -crop #{crop} "#{pdf_path}[#{page}]" -format %c histogram:info: | wc -l`.to_i
-    unless colornum == expected_colornum
+    if はみだし.てる?(pdf_path, page)
       puts page
-      `convert -density 92 -geometry #{width} "#{pdf_path}[#{page}]" "#{temp_dir}/#{page}.png"`
+      はみだし.てる画像を保存(pdf_path, page, "#{temp_dir}/#{page}.png")
     end
   end
 
