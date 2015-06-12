@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Seiei Miyagi"]
   spec.email         = ["hanachin@gmail.com"]
 
-  spec.summary       = %q{PDFの文字がはみ出してないか調べる.}
+  spec.summary       = %q{Detect PDF text overflow.}
   spec.homepage      = "https://github.com/yasslab/hamidashi"
   spec.license       = "MIT"
 

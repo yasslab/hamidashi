@@ -1,6 +1,6 @@
 # Hamidashi
 
-PDFの文字がはみ出してるか調べる
+Detect PDF text overflow.
 
 ## Requirements
 

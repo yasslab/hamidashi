@@ -13,12 +13,12 @@ pdf_path   = File.expand_path(ARGV[0])
 output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
 Dir.mktmpdir('hamidashi') do |temp_dir|
-  はみだし = Hamidashi.new
+  hamidashi = Hamidashi.new
 
   (0...PDF::Reader.new(pdf_path).page_count).each do |page|
-    if はみだし.てる?(pdf_path, page)
+    if hamidashi.overflow?(pdf_path, page)
       puts page
-      はみだし.てる画像を保存(pdf_path, page, "#{temp_dir}/#{page}.png")
+      hamidashi.save_page(pdf_path, page, "#{temp_dir}/#{page}.png")
     end
   end
 
