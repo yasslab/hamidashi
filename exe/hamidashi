@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'pdf/reader'
+require 'tmpdir'
+
+if ARGV.empty?
+  puts 'Usage: hamidashi example.pdf'
+  exit 1
+end
+
+pdf_path   = File.expand_path(ARGV[0])
+output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
+
+# TODO コマンドライン引数から取る
+width             = 640
+crop_width        = 28
+crop              = "#{crop_width}x+#{width - crop_width}+0"
+expected_colornum = 1
+
+Dir.mktmpdir('hamidashi') do |temp_dir|
+  (0...PDF::Reader.new(pdf_path).page_count).each do |page|
+    colornum=`convert -density 92 -geometry #{width} -crop #{crop} "#{pdf_path}[#{page}]" -format %c histogram:info: | wc -l`.to_i
+    unless colornum == expected_colornum
+      puts page
+      `convert -density 92 -geometry #{width} "#{pdf_path}[#{page}]" "#{temp_dir}/#{page}.png"`
+    end
+  end
+
+  unless Dir.glob(File.join(temp_dir, '*.png')).empty?
+    FileUtils.cp_r(temp_dir, output_dir)
+    exit 1
+  end
+end
