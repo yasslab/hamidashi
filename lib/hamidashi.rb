@@ -1,4 +1,5 @@
 require "hamidashi/version"
+require "shellwords"
 
 class Hamidashi
   def initialize(percentage)
@@ -6,16 +7,16 @@ class Hamidashi
   end
 
   def overflow?(pdf_path, page)
-    colornum=`convert -density 92 -geometry #{width} -crop #{crop} "#{pdf_path}[#{page}]" -format %c histogram:info: | wc -l`.to_i
+    colornum=`convert -density 92 -geometry #{width} -crop #{crop} "#{pdf_path.shellescape}[#{page.shellescape}]" -format %c histogram:info: | wc -l`.to_i
     colornum != expected_colornum
   end
 
   def save_page(pdf_path, page, path)
-    `convert -density 92 -geometry #{width} "#{pdf_path}[#{page}]" #{path}`
+    `convert -density 92 -geometry #{width} "#{pdf_path.shellescape}[#{page.shellescape}]" #{path.shellescape}`
   end
 
   def save_preview_page(pdf_path, page, path)
-    `convert -density 92 -geometry #{width} -fill "rgba(255, 0, 0, 50%)" -strokewidth 0 -draw "rectangle #{width - crop_width},#{height},#{width},0" "#{pdf_path}[#{page}]" #{path}`
+    `convert -density 92 -geometry #{width} -fill "rgba(255, 0, 0, 50%)" -strokewidth 0 -draw "rectangle #{width - crop_width},#{height},#{width},0" "#{pdf_path.shellescape}[#{page.shellescape}]" #{path.shellescape}`
   end
 
   private
