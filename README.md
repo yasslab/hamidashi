@@ -28,13 +28,14 @@ Or install it yourself as:
     hamidashi version 0.1.1.
 
     Usage:
-      exe/hamidashi <name>
+      exe/hamidashi <name> [--margin=<margin>]
       exe/hamidashi -h | --help
       exe/hamidashi --version
 
     Options:
-      -h --help  Show this screen.
-      --version  Show version.
+      -h --help          Show this screen.
+      --version          Show version.
+      --margin=<margin>  Right margin percentage [default: 4.375].
 
 ## Development
 

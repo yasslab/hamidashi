@@ -1,6 +1,10 @@
 require "hamidashi/version"
 
 class Hamidashi
+  def initialize(percentage)
+    @crop_width = width * percentage
+  end
+
   def overflow?(pdf_path, page)
     colornum=`convert -density 92 -geometry #{width} -crop #{crop} "#{pdf_path}[#{page}]" -format %c histogram:info: | wc -l`.to_i
     colornum != expected_colornum
@@ -19,7 +23,7 @@ class Hamidashi
   end
 
   def crop_width
-    28
+    @crop_width
   end
 
   def expected_colornum

@@ -9,13 +9,14 @@ doc = <<DOCOPT
 hamidashi version #{Hamidashi::VERSION}.
 
 Usage:
-  #{__FILE__} <name>
+  #{__FILE__} <name> [--margin=<margin>]
   #{__FILE__} -h | --help
   #{__FILE__} --version
 
 Options:
-  -h --help  Show this screen.
-  --version  Show version.
+  -h --help          Show this screen.
+  --version          Show version.
+  --margin=<margin>  Right margin percentage [default: 4.375].
 DOCOPT
 
 begin
@@ -38,8 +39,7 @@ pdf_path   = File.expand_path(opt['<name>'])
 output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
 Dir.mktmpdir('hamidashi') do |temp_dir|
-  hamidashi = Hamidashi.new
-
+  hamidashi = Hamidashi.new(Float(opt['--margin']))
   (0...PDF::Reader.new(pdf_path).page_count).each do |page|
     if hamidashi.overflow?(pdf_path, page)
       puts page
