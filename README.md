@@ -31,12 +31,14 @@ Or install it yourself as:
 
     Usage:
       exe/hamidashi <name> [--margin=<margin>]
+      exe/hamidashi preview <name> [--margin=<margin>] [--page=<page>]
       exe/hamidashi -h | --help
       exe/hamidashi --version
 
     Options:
       -h --help          Show this screen.
       --version          Show version.
+      --page=<page>      Show specified page [default: 10].
       --margin=<margin>  Right margin percentage [default: 4.375].
 
 ## Development

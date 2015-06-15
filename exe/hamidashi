@@ -12,12 +12,14 @@ Detect PDF text overflow.
 
 Usage:
   #{__FILE__} <name> [--margin=<margin>]
+  #{__FILE__} preview <name> [--margin=<margin>] [--page=<page>]
   #{__FILE__} -h | --help
   #{__FILE__} --version
 
 Options:
   -h --help          Show this screen.
   --version          Show version.
+  --page=<page>      Show specified page [default: 10].
   --margin=<margin>  Right margin percentage [default: 4.375].
 DOCOPT
 
@@ -37,11 +39,18 @@ if opt['--version']
   exit 0
 end
 
-pdf_path   = File.expand_path(opt['<name>'])
+pdf_path  = File.expand_path(opt['<name>'])
+hamidashi = Hamidashi.new(Rational(opt['--margin']))
+
+if opt['preview']
+  preview_path = File.expand_path("hamidashi-preview-#{Time.now.strftime("%Y%m%d%H%M%S")}-" + File.basename(pdf_path, '.pdf') + "-#{opt['--page']}.png")
+  hamidashi.save_preview_page(pdf_path, opt['--page'], preview_path)
+  exit
+end
+
 output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
 Dir.mktmpdir('hamidashi') do |temp_dir|
-  hamidashi = Hamidashi.new(Float(opt['--margin']))
   (0...PDF::Reader.new(pdf_path).page_count).each do |page|
     if hamidashi.overflow?(pdf_path, page)
       puts page

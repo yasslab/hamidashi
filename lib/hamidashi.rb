@@ -2,7 +2,7 @@ require "hamidashi/version"
 
 class Hamidashi
   def initialize(percentage)
-    @crop_width = width * percentage
+    @crop_width = (width * percentage / 100).to_i
   end
 
   def overflow?(pdf_path, page)
@@ -12,6 +12,10 @@ class Hamidashi
 
   def save_page(pdf_path, page, path)
     `convert -density 92 -geometry #{width} "#{pdf_path}[#{page}]" #{path}`
+  end
+
+  def save_preview_page(pdf_path, page, path)
+    `convert -density 92 -geometry #{width} -fill "rgba(255, 0, 0, 50%)" -strokewidth 0 -draw "rectangle #{width - crop_width},#{height},#{width},0" "#{pdf_path}[#{page}]" #{path}`
   end
 
   private
@@ -28,6 +32,11 @@ class Hamidashi
 
   def expected_colornum
     1
+  end
+
+  # FIXME
+  def height
+    10000
   end
 
   def width
