@@ -28,7 +28,7 @@ begin
 rescue Docopt::Exit => e
   puts e.message
   if Docopt::Exit.usage.empty?
-    exit 0
+    exit
   else
     exit 1
   end
@@ -36,7 +36,7 @@ end
 
 if opt['--version']
   puts "hamidashi version #{Hamidashi::VERSION}"
-  exit 0
+  exit
 end
 
 pdf_path  = File.expand_path(opt['<name>'])
