@@ -1,15 +1,40 @@
 #!/usr/bin/env ruby
+require 'docopt'
 require 'fileutils'
 require 'hamidashi'
 require 'pdf/reader'
 require 'tmpdir'
 
-if ARGV.empty?
-  puts 'Usage: hamidashi example.pdf'
-  exit 1
+doc = <<DOCOPT
+hamidashi version #{Hamidashi::VERSION}.
+
+Usage:
+  #{__FILE__} <name>
+  #{__FILE__} -h | --help
+  #{__FILE__} --version
+
+Options:
+  -h --help  Show this screen.
+  --version  Show version.
+DOCOPT
+
+begin
+  opt = Docopt::docopt(doc)
+rescue Docopt::Exit => e
+  puts e.message
+  if Docopt::Exit.usage.empty?
+    exit 0
+  else
+    exit 1
+  end
 end
 
-pdf_path   = File.expand_path(ARGV[0])
+if opt['--version']
+  puts "hamidashi version #{Hamidashi::VERSION}"
+  exit 0
+end
+
+pdf_path   = File.expand_path(opt['<name>'])
 output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
 Dir.mktmpdir('hamidashi') do |temp_dir|

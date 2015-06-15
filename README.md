@@ -24,7 +24,17 @@ Or install it yourself as:
 
 ## Usage
 
-    $ hamidashi example.pdf
+    $ hamidashi -h
+    hamidashi version 0.1.1.
+
+    Usage:
+      exe/hamidashi <name>
+      exe/hamidashi -h | --help
+      exe/hamidashi --version
+
+    Options:
+      -h --help  Show this screen.
+      --version  Show version.
 
 ## Development
 
