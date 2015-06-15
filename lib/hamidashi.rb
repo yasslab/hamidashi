@@ -16,7 +16,7 @@ class Hamidashi
   end
 
   def save_preview_page(pdf_path, page, path)
-    `convert -density 92 -geometry #{width} -fill "rgba(255, 0, 0, 50%)" -strokewidth 0 -draw "rectangle #{width - crop_width},#{height},#{width},0" "#{pdf_path.shellescape}[#{page.shellescape}]" #{path.shellescape}`
+    `convert -density 92 -geometry #{width} -fill "rgba(0, 255, 0, 50%)" -strokewidth 0 -draw "rectangle #{width - crop_width},#{height},#{width},0" "#{pdf_path.shellescape}[#{page.shellescape}]" #{path.shellescape}`
   end
 
   private
