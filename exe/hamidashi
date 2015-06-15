@@ -6,7 +6,9 @@ require 'pdf/reader'
 require 'tmpdir'
 
 doc = <<DOCOPT
-hamidashi version #{Hamidashi::VERSION}.
+Hamidashi
+=========
+Detect PDF text overflow.
 
 Usage:
   #{__FILE__} <name> [--margin=<margin>]

@@ -25,7 +25,9 @@ Or install it yourself as:
 ## Usage
 
     $ hamidashi -h
-    hamidashi version 0.1.1.
+    Hamidashi
+    =========
+    Detect PDF text overflow.
 
     Usage:
       exe/hamidashi <name> [--margin=<margin>]
