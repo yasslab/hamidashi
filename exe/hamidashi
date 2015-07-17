@@ -40,11 +40,11 @@ if opt['--version']
 end
 
 pdf_path  = File.expand_path(opt['<name>'])
-hamidashi = Hamidashi.new(Rational(opt['--margin']))
+hamidashi = Hamidashi.new(Rational(opt['--margin']), pdf_path)
 
 if opt['preview']
   preview_path = File.expand_path("hamidashi-preview-#{Time.now.strftime("%Y%m%d%H%M%S")}-" + File.basename(pdf_path, '.pdf') + "-#{opt['--page']}.png")
-  hamidashi.save_preview_page(pdf_path, opt['--page'], preview_path)
+  hamidashi.save_preview_page(opt['--page'], preview_path)
   exit
 end
 
@@ -52,9 +52,9 @@ output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
 Dir.mktmpdir('hamidashi') do |temp_dir|
   (0...PDF::Reader.new(pdf_path).page_count).each do |page|
-    if hamidashi.overflow?(pdf_path, page)
+    if hamidashi.overflow?(page)
       puts page
-      hamidashi.save_page(pdf_path, page, "#{temp_dir}/#{page}.png")
+      hamidashi.save_page(page, "#{temp_dir}/#{page}.png")
     end
   end
 
