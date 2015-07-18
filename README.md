@@ -1,4 +1,5 @@
 # Hamidashi
+[![Build Status](https://travis-ci.org/yasslab/hamidashi.svg?branch=master)](https://travis-ci.org/yasslab/hamidashi)
 
 Detect PDF text overflow.
 
