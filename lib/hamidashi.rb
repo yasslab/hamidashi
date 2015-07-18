@@ -33,6 +33,10 @@ class Hamidashi
     page_img.destroy!
   end
 
+  def pdf_page_count
+    pdf_image_list.count
+  end
+
   private
 
   # TODO provide a way to set these config values

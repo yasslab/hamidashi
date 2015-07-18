@@ -2,7 +2,6 @@
 require 'docopt'
 require 'fileutils'
 require 'hamidashi'
-require 'pdf/reader'
 require 'tmpdir'
 
 doc = <<DOCOPT
@@ -51,7 +50,7 @@ end
 output_dir = File.expand_path("hamidashi-#{Time.now.strftime("%Y%m%d%H%M%S")}")
 
 Dir.mktmpdir('hamidashi') do |temp_dir|
-  (0...PDF::Reader.new(pdf_path).page_count).each do |page|
+  (0...hamidashi.pdf_page_count).each do |page|
     if hamidashi.overflow?(page)
       puts page
       hamidashi.save_page(page, "#{temp_dir}/#{page}.png")
