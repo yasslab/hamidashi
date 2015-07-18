@@ -9,7 +9,7 @@ class Hamidashi
 
   def overflow?(page)
     histogram_info = `convert -density 92 -geometry #{width} -crop #{crop} "#{@pdf_path.shellescape}[#{page.to_s.shellescape}]" -format %c histogram:info:`
-    colornum = histogram_info.lines.count
+    colornum = histogram_info.lines.count {|l| l.include?(?:) }
     colornum != expected_colornum
   end
 
