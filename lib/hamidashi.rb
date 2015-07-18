@@ -1,5 +1,5 @@
 require "hamidashi/version"
-require "RMagick"
+require "rmagick"
 
 class Hamidashi
   attr_reader :percentage
