@@ -9,7 +9,7 @@ then
   rm -rf hamidashi-pdf
 fi
 
-cp catalog-hamidashi.yml catalog.yml
+cp catalog-no_hamidashi.yml catalog.yml
 
 bundle exec review-pdfmaker config.yml
-mv hamidashi.pdf ..
+mv hamidashi.pdf ../no_hamidashi.pdf
