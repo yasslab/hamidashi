@@ -1,5 +1,7 @@
 # Hamidashi
 [![Build Status](https://travis-ci.org/yasslab/hamidashi.svg?branch=master)](https://travis-ci.org/yasslab/hamidashi)
+[![Code Climate](https://codeclimate.com/github/yasslab/hamidashi/badges/gpa.svg)](https://codeclimate.com/github/yasslab/hamidashi)
+[![Test Coverage](https://codeclimate.com/github/yasslab/hamidashi/badges/coverage.svg)](https://codeclimate.com/github/yasslab/hamidashi/coverage)
 
 Detect PDF text overflow.
 
