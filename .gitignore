@@ -10,3 +10,5 @@
 /vendor/bundle/
 
 test/fixtures/pdf-src/catalog.yml
+
+hamidashi-*/

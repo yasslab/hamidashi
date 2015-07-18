@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pdf-reader"
   spec.add_dependency "docopt"
   spec.add_development_dependency "bundler", "~> 1.10"
+  spec.add_development_dependency "cucumber"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake", "~> 10.0"
