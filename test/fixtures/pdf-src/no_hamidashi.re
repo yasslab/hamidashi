@@ -1,3 +1,3 @@
-= Hamidashiテスト用PDF
+= Test PDF for Hamidashi
 
-@<code>{はみ出さない}
+@<code>{short_code}

@@ -1,3 +1,3 @@
-= Hamidashiテスト用PDF
+= Test PDF for Hamidashi
 
 @<code>{very_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long_long}

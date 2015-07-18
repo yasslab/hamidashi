@@ -1,4 +1,6 @@
-bookname: hamidashi
-booktitle: Hamidashiテスト用PDF
 aut: ["Seiei Higa"]
+bookname: hamidashi
+booktitle: Test PDF for Hamidashi
 debug: null
+language: en
+texstyle: hamidashi
