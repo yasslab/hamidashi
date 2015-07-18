@@ -44,7 +44,7 @@ hamidashi = Hamidashi.new(Rational(opt['--margin']), pdf_path)
 
 if opt['preview']
   preview_path = File.expand_path("hamidashi-preview-#{Time.now.strftime("%Y%m%d%H%M%S")}-" + File.basename(pdf_path, '.pdf') + "-#{opt['--page']}.png")
-  hamidashi.save_preview_page(opt['--page'], preview_path)
+  hamidashi.save_preview_page(Integer(opt['--page']), preview_path)
   exit
 end
 
