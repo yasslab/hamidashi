@@ -2,7 +2,7 @@ require 'minitest/autorun'
 
 class TestHamidashi < Minitest::Test
   def setup
-    @hamidashi = Hamidashi.new(1, HAMIDASHI_TEST_PDF)
+    @hamidashi = Hamidashi.new('1', HAMIDASHI_TEST_PDF)
   end
 
   def test_overflow?

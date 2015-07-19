@@ -2,11 +2,9 @@ require "hamidashi/version"
 require "rmagick"
 
 class Hamidashi
-  attr_reader :percentage
-
-  def initialize(percentage, pdf_path)
-    @percentage = percentage / 100r
-    @pdf_path   = pdf_path
+  def initialize(margin, pdf_path)
+    @margin   = margin
+    @pdf_path = pdf_path
   end
 
   def overflow?(page)
@@ -59,12 +57,26 @@ class Hamidashi
     1
   end
 
+  def fixed_margin?
+    @margin.end_with?('px')
+  end
+
+  def margin_px
+    @margin_width ||= Integer(@margin.sub('px', ''))
+  end
+
+  def margin_percentage
+    @margin_percentage ||= Rational(@margin.sub('%', '')) / 100
+  end
+
   def pdf_image_list
     @pdf_image_list ||= Magick::ImageList.new(@pdf_path)
   end
 
   def right_margin_width(page)
+    return margin_px if fixed_margin?
+
     page_img = pdf_image_list[page]
-    (page_img.columns * percentage).to_i
+    (page_img.columns * margin_percentage).to_i
   end
 end

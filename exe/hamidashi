@@ -19,7 +19,7 @@ Options:
   -h --help          Show this screen.
   --version          Show version.
   --page=<page>      Show specified page [default: 10].
-  --margin=<margin>  Right margin percentage [default: 4.375].
+  --margin=<margin>  Right margin [default: 4.375%].
 DOCOPT
 
 begin
@@ -39,7 +39,14 @@ if opt['--version']
 end
 
 pdf_path  = File.expand_path(opt['<name>'])
-hamidashi = Hamidashi.new(Rational(opt['--margin']), pdf_path)
+
+unless /\A[\d.]+(%|px|)\z/ =~ opt['--margin']
+  puts "margin #{opt['--margin']} is invalid."
+  puts 'example: 42% or 42px or 42'
+  exit 1
+end
+
+hamidashi = Hamidashi.new(opt['--margin'], pdf_path)
 
 if opt['preview']
   preview_path = File.expand_path("hamidashi-preview-#{Time.now.strftime("%Y%m%d%H%M%S")}-" + File.basename(pdf_path, '.pdf') + "-#{opt['--page']}.png")
