@@ -57,6 +57,8 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/yassla
 
 ## License
 
-Copyright &copy; 2015 [YassLab](http://yasslab.jp)
+Copyright &copy; 2015-2017 [YassLab](http://yasslab.jp).
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+[![YassLab](https://yasslab.jp/img/logo_800x200.png)](https://yasslab.jp/)
