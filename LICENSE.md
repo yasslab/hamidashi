@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright &copy; 2015 [YassLab](http://yasslab.jp)
+Copyright &copy; 2015-2017 [YassLab](https://yasslab.jp)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
